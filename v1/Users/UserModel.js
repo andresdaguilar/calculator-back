@@ -18,7 +18,7 @@ const User = sequelize.define('User', {
   },
 },
   {
-    paranoid: true,  // Enables soft delete
+    paranoid: true,
   }
 );
 

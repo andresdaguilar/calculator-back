@@ -1,0 +1,16 @@
+{
+  "name": "calculator-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {    
+    "start": "node server.js",
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}
