@@ -1,5 +1,8 @@
 const express = require('express');
-const { register, login } = require('./controller');
+const {
+  register,
+  login
+} = require('./controller');
 const router = express.Router();
 
 /**
@@ -38,17 +41,12 @@ const router = express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *               password:
- *                 type: string
+ *             $ref: '#/components/schemas/User'
  *     responses:
  *       201:
- *         description: The user was successfully created
+ *         description: User registered successfully
  *       400:
- *         description: The user already exists
+ *         description: Bad request
  */
 router.post('/register', register);
 
@@ -63,19 +61,13 @@ router.post('/register', register);
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *               password:
- *                 type: string
+ *             $ref: '#/components/schemas/User'
  *     responses:
  *       200:
- *         description: The user was successfully logged in
+ *         description: User logged in successfully
  *       400:
- *         description: Invalid credentials or email not verified
+ *         description: Invalid credentials
  */
 router.post('/login', login);
-//Usually this controller would handle email validation, forgot password and reset password features
 
 module.exports = router;

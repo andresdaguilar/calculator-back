@@ -7,10 +7,23 @@ const options = {
     info: {
       title: 'Calculator API',
       version: '1.0.0',
-      description: 'Challenge for TrueNorth',
+      description: 'Calculator challenge for TrueNorth',
+    },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
     },
   },
-  apis: ['./v1/Users/routes.js'], 
+  apis: [
+    './v1/Users/routes.js',
+    './v1/Operations/routes.js',
+    './v1/Records/routes.js'
+  ], 
 };
 
 const swaggerSpec = swaggerJSDoc(options);
