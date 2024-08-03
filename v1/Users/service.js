@@ -56,13 +56,18 @@ exports.patchUser = async (userId, updates) => {
 };
 
 exports.updateBalance = async (userId, newAmount) => {
-  const user = await User.findOne({ where: { id: userId } });
-  if (!user) {
-    throw new Error('User doesn\'t exist');
-  }
+  try{
+    const user = await User.findOne({ where: { id: userId } });
+    if (!user) {
+      throw new Error('User doesn\'t exist');
+    }
 
-  // Update balance
-  user.balance = newAmount;
-  await user.save();
-  return user;
+    // Update balance
+    user.balance = newAmount;
+    await user.save();
+    return newAmount;
+  } catch (error) {
+    throw error
+  }
+  
 };

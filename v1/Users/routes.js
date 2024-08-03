@@ -1,9 +1,12 @@
 const express = require('express');
 const {
   register,
-  login
+  login,
+  updateBalance
 } = require('./controller');
 const router = express.Router();
+const validateDTO = require('../middleware/validateDTO');
+const { registerUser, updateBalanceDTO } = require('./userDTO');
 
 /**
  * @swagger
@@ -48,7 +51,7 @@ const router = express.Router();
  *       400:
  *         description: Bad request
  */
-router.post('/register', register);
+router.post('/register', validateDTO(registerUser), register);
 
 /**
  * @swagger
@@ -69,5 +72,7 @@ router.post('/register', register);
  *         description: Invalid credentials
  */
 router.post('/login', login);
+
+router.patch('/update-balance', validateDTO(updateBalanceDTO), updateBalance)
 
 module.exports = router;
