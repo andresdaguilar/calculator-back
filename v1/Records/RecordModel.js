@@ -22,6 +22,10 @@ const Record = sequelize.define('Record', {
     type: DataTypes.DECIMAL,
     allowNull: false,
   },
+  amount2: {
+    type: DataTypes.DECIMAL,
+    allowNull: false,
+  },
   user_balance: {
     type: DataTypes.DECIMAL,
     allowNull: false,

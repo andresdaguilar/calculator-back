@@ -7,8 +7,11 @@ const {
 } = require('./service');
 
 exports.create = async (req, res) => {
+  const { operation_id, amount, amount2 } = req.body;
+  const { userId } = req;
+  
   try {
-    const record = await createRecord(req.body);
+    const record = await createRecord(operation_id,  amount, amount2, userId);
     res.status(201).json(record);
   } catch (error) {
     res.status(400).json({ message: error.message });

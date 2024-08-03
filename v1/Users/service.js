@@ -38,3 +38,31 @@ exports.loginUser = async (email, password) => {
   return { user, token };
 };
 
+exports.findOne = async (userId) => {
+  const user = await User.findOne({ where: { id: userId } });
+  if (!user) {
+    throw new Error('User doesn\'t exists');
+  }
+  return user;
+}
+
+exports.patchUser = async (userId, updates) => {
+  const user = await User.findOne({ where: { id: userId } });
+  if (!user) {
+    throw new Error('User doesn\'t exist');
+  }
+  await user.update(updates);
+  return user;
+};
+
+exports.updateBalance = async (userId, newAmount) => {
+  const user = await User.findOne({ where: { id: userId } });
+  if (!user) {
+    throw new Error('User doesn\'t exist');
+  }
+
+  // Update balance
+  user.balance = newAmount;
+  await user.save();
+  return user;
+};

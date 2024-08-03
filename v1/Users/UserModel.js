@@ -16,6 +16,11 @@ const User = sequelize.define('User', {
     defaultValue: 'active',
     allowNull: false,
   },
+  balance: {
+    type: DataTypes.DECIMAL,
+    defaultValue: 100,
+    allowNull: false
+  }
 },
   {
     paranoid: true,

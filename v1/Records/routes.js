@@ -7,6 +7,11 @@ const {
   delete: deleteRecord
 } = require('./controller');
 const { authMiddleware } = require('../middleware/authMiddleware');
+const { getRecordLimiter } = require('../middleware/rateLimit');
+
+const validateDTO = require('../middleware/validateDTO');
+const { createRecordSchema } = require('./recordDTO');
+
 const router = express.Router();
 
 /**
@@ -89,7 +94,7 @@ const router = express.Router();
  *               items:
  *                 $ref: '#/components/schemas/Record'
  */
-router.get('/', authMiddleware, getAll);
+router.get('/', authMiddleware, getRecordLimiter, getAll);
 
 /**
  * @swagger
@@ -138,7 +143,7 @@ router.get('/:id', authMiddleware, getOne);
  *       400:
  *         description: Bad request
  */
-router.post('/', authMiddleware, create);
+router.post('/', authMiddleware, validateDTO(createRecordSchema), create);
 
 /**
  * @swagger
