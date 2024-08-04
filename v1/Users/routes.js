@@ -24,6 +24,20 @@ const { registerUser, updateBalanceDTO } = require('./userDTO');
  *         password:
  *           type: string
  *           description: The user's password
+ *     UpdateBalance:
+ *       type: object
+ *       required:
+ *         - user_id
+ *         - new_balance
+ *       properties:
+ *         user_id:
+ *           type: integer
+ *           description: The user's ID
+ *           example: 1
+ *         new_balance:
+ *           type: number
+ *           description: The new balance for the user
+ *           example: 100.50
  */
 
 /**
@@ -73,6 +87,24 @@ router.post('/register', validateDTO(registerUser), register);
  */
 router.post('/login', login);
 
+/**
+ * @swagger
+ * /api/v1/users/update-balance:
+ *   patch:
+ *     summary: Update the balance of a user
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/UpdateBalance'
+ *     responses:
+ *       200:
+ *         description: User balance updated successfully
+ *       400:
+ *         description: Bad request
+ */
 router.patch('/update-balance', validateDTO(updateBalanceDTO), updateBalance)
 
 module.exports = router;
