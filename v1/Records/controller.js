@@ -2,7 +2,6 @@ const {
   createRecord,
   getRecords,
   getRecordById,
-  updateRecord,
   deleteRecord,
 } = require('./service');
 
@@ -20,7 +19,8 @@ exports.create = async (req, res) => {
 
 exports.getAll = async (req, res) => {
   try {
-    const records = await getRecords(req.query);
+    const { userId } = req;
+    const records = await getRecords(req.query, userId);
     res.json(records);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -33,15 +33,6 @@ exports.getOne = async (req, res) => {
     res.json(record);
   } catch (error) {
     res.status(404).json({ message: error.message });
-  }
-};
-
-exports.update = async (req, res) => {
-  try {
-    const record = await updateRecord(req.params.id, req.body);
-    res.json(record);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
   }
 };
 

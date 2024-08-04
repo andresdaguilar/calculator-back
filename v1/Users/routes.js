@@ -5,7 +5,7 @@ const {
   updateBalance
 } = require('./controller');
 const router = express.Router();
-const validateDTO = require('../middleware/validateDTO');
+const { validateDTO } = require('../middleware/validateDTO');
 const { registerUser, updateBalanceDTO } = require('./userDTO');
 
 /**

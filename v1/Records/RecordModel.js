@@ -42,4 +42,6 @@ const Record = sequelize.define('Record', {
   paranoid: true, 
 });
 
+Record.belongsTo(Operation, { foreignKey: 'operation_id', as: 'operation' });
+
 module.exports = Record;

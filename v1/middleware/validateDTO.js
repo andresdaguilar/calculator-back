@@ -1,7 +1,7 @@
-const validateDTO = (schema) => (req, res, next) => {
-  const { error } = schema.validate(req.body, { abortEarly: false });
+const validateDTO = (schema, content) => (req, res, next) => {
+  console.log(content)
+  const { error } = schema.validate(req[content], { abortEarly: false });
   if (error) {
-    console.log(error.details)
     return res.status(400).json(
       {
         message: 'Validation error',
@@ -9,7 +9,22 @@ const validateDTO = (schema) => (req, res, next) => {
       }
     );
   }
+  console.log("Validation", error)
   next();
 };
 
-module.exports = validateDTO;
+const validateId = (schema) => (req, res, next) => {
+  const { error } = schema.validate(req.params.id);
+  if (error) {
+    return res.status(400).json({
+      message: 'Validation error',
+      details: error.details.map((detail) => detail.message),
+    });
+  }
+  next();
+};
+
+module.exports = {
+  validateDTO,
+  validateId
+}
