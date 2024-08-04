@@ -69,6 +69,38 @@ The API is documented using Swagger, providing an interactive interface for expl
    git clone <repository-url>
    cd <repository-directory>
 
+1. **Clone the Repository**:
+   ```bash
+   git clone <repository-url>
+   cd <repository-directory>
 2. **Install Dependencies**:
-    ```bash
-  npm install
+   ```bash
+   npm install
+
+3. **Configure Environment Variables**:
+   ##### Create a `.env` file in the root directory and add the following environment variables:
+   ```bash
+   DATABASE_URL=[postgresUrl]
+   JWT_SECRET=your_jwt_secret
+   RANDOM_KEY = [random-key]
+   LIMIT_WINDOW=[minutes]
+   MAX_REQUESTS=[max requests per minute]
+
+4. **Run Database Migrations**:
+   ```bash
+   npx sequelize-cli db:migrate
+
+### Running Tests
+  **To run the tests, use the following command**:
+   ```bash
+   npm test
+   ```
+
+### Accessing Swagger Documentation
+The Swagger documentation is available at {baseUrl}/api-docs
+
+## Conclusion
+
+The Arithmetic Calculator REST API provides a simple yet robust platform for performing basic arithmetic operations with user balance management. The decision to use Express.js, Joi, rate limiting, and PostgreSQL ensures a reliable and efficient service. With comprehensive documentation and local setup instructions, this project is ready for further development and use by other developers.
+
+For any questions or contributions, please feel free to reach out or submit a pull request. Happy coding!
