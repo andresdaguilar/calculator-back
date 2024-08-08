@@ -3,6 +3,7 @@ const sequelize = require('./v1/config/db');
 const routes = require('./v1/routes');
 const setupSwagger = require('./v1/config/swagger');
 const cors = require('cors');
+const serveless = require('serverless-http');
 
 require('dotenv').config();
 
@@ -14,6 +15,10 @@ app.use(cors({
   credentials: true, 
 }));
 
+app.get('/ping', (req, res) => {
+  res.send('pong');
+})
+
 app.use(express.json());
 app.use('/api/v1', routes);
 
@@ -23,9 +28,13 @@ const PORT = process.env.PORT || 8000;
 
 const force = false;
 
-sequelize.sync({force: force}).then(() => {
+
+if (process.env.ENV === 'PRODUCTION'){
+  module.exports.handler = servlerless(app);
+}else{
+  sequelize.sync({force: force}).then(() => {
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
 });
-
+}
