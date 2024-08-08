@@ -1,5 +1,5 @@
 const validateDTO = (schema, content) => (req, res, next) => {
-  console.log(content)
+  console.log("Content", content)
   const { error } = schema.validate(req[content], { abortEarly: false });
   if (error) {
     return res.status(400).json(

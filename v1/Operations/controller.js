@@ -1,5 +1,6 @@
 const {
   createOperation,
+  findAll,
   updateOperation,
   deleteOperation
 } = require('./service');
@@ -14,6 +15,15 @@ exports.create = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+exports.findAll = async (req, res) => {
+  try {
+    const operations = await findAll();
+    res.json(operations)
+  } catch (error) {
+    res.status(400).json({message: 'Error getting operations'})
+  }
+}
 
 exports.update = async (req, res) => {
   const { id } = req.params;

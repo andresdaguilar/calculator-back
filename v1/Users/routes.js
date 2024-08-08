@@ -7,6 +7,7 @@ const {
 const router = express.Router();
 const { validateDTO } = require('../middleware/validateDTO');
 const { registerUser, updateBalanceDTO } = require('./userDTO');
+const { authMiddleware } = require('../middleware/authMiddleware');
 
 /**
  * @swagger
@@ -105,6 +106,6 @@ router.post('/login', login);
  *       400:
  *         description: Bad request
  */
-router.patch('/update-balance', validateDTO(updateBalanceDTO), updateBalance)
+router.patch('/update-balance', authMiddleware, validateDTO(updateBalanceDTO), updateBalance)
 
 module.exports = router;

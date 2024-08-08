@@ -14,11 +14,6 @@ const registerUser = Joi.object({
 })
 
 const updateBalanceDTO = Joi.object({
-  user_id: Joi.number().integer().required().messages({
-    'number.base': 'User ID must be a number',
-    'number.integer': 'User ID must be an integer',
-    'any.required': 'User ID is required'
-  }),
   new_balance: Joi.number().required().messages({
     'number.base': 'New Balance must be a number',
     'any.required': 'New Balance is required'

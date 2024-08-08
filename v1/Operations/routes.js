@@ -1,6 +1,7 @@
 const express = require('express');
 const {
   create,
+  findAll,
   update,
   delete: deleteOperation
 } = require('./controller');
@@ -54,6 +55,8 @@ const router = express.Router();
  *         description: Bad request
  */
 router.post('/', authMiddleware, create);
+
+router.get('/', authMiddleware, findAll);
 
 /**
  * @swagger

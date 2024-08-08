@@ -2,10 +2,17 @@ const express = require('express');
 const sequelize = require('./v1/config/db');
 const routes = require('./v1/routes');
 const setupSwagger = require('./v1/config/swagger');
+const cors = require('cors');
 
 require('dotenv').config();
 
 const app = express();
+
+app.use(cors({
+  origin: '*', 
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, 
+}));
 
 app.use(express.json());
 app.use('/api/v1', routes);
