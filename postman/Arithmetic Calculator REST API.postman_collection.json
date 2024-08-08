@@ -11,6 +11,18 @@
 			"item": [
 				{
 					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -24,12 +36,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/v1/user/register",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/api/v1/user/register",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -225,7 +235,52 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Records",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/record?page=1&size=10&sortOrder=asc&sortField=user_balance&filter=operation_id=6,amount=gt:50",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"record"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sortOrder",
+											"value": "asc"
+										},
+										{
+											"key": "sortField",
+											"value": "user_balance"
+										},
+										{
+											"key": "filter",
+											"value": "operation_id=6,amount=gt:50"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
 				},
 				{
 					"name": "Get Record",
@@ -296,6 +351,14 @@
 								"operation"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get operations",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
