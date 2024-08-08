@@ -27,14 +27,8 @@ setupSwagger(app);
 const PORT = process.env.PORT || 8000;
 
 const force = false;
-
-
-if (process.env.ENV === 'PRODUCTION'){
-  module.exports.handler = servlerless(app);
-}else{
-  sequelize.sync({force: force}).then(() => {
+sequelize.sync({force: force}).then(() => {
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
-});
-}
+})
